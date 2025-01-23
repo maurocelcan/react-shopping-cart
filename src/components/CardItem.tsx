@@ -6,7 +6,7 @@ interface CardItemProps {
   product: Product; // Producto que se mostrará
   buttonText: string; // Texto del botón
   onButtonClick: (product: Product) => void; // Acción al hacer clic en el botón
-  onNavigate?: (id: number) => void; // Función opcional para redirigir al detalle del producto
+  onNavigate?: (product: Product) => void; // Función opcional para redirigir al detalle del producto
   customStyles?: { // Estilos personalizados opcionales
     container?: object; // Estilos para el contenedor principal
     button?: object; // Estilos para el botón
@@ -36,12 +36,12 @@ const CardItem: React.FC<CardItemProps> = ({
         cursor: onNavigate ? 'pointer' : 'default', // Muestra el cursor de enlace si hay navegación
         ...customStyles?.container,
       }}
-      onClick={onNavigate ? () => onNavigate(product.id) : undefined} // Navega si se proporciona la función
+      onClick={onNavigate ? () => onNavigate(product) : undefined} // Navega si se proporciona la función
     >
       <Box
         component="img"
         src={product.image}
-        alt={product.title}
+        alt={product.title} 
         sx={{
           width: '100%',
           height: 'auto',

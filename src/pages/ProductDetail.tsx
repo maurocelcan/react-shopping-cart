@@ -1,10 +1,16 @@
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import ProductDetails from '../components/ProductDetails';
 
 const ProductDetail = () => {
-  const { productId } = useParams(); // Obtiene "producto1", "producto2", etc.
-  
-  // Aquí puedes usar productId para buscar el detalle del producto
-  return <div>Detalle del producto {productId}</div>;
+  const location = useLocation();
+  const { product } = location.state || {};
+
+  return (
+    <>
+     <ProductDetails product={product} />
+    </>
+    
+  );
 };
 
 export default ProductDetail;
